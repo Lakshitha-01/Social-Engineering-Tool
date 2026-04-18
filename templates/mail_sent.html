@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Email Sent</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+    }
+
+    h1 {
+      color: #4CAF50;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555;
+      font-size: 16px;
+    }
+
+    .button {
+    margin-top: 30px;
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: transparent;
+    color: #1c1e21;
+    text-decoration: none;
+    border: 1.5px solid #1c1e21;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.25s ease;
+    }       
+
+    .button:hover {
+    background-color: #1c1e21;
+    color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✅ Email Sent Successfully</h1>
+    <p>Your phishing email has been sent to {{recipient_mail}}</p> 
+    <a href="/" class="button">Back to Home Page</a>
+  </div>
+</body>
+</html>

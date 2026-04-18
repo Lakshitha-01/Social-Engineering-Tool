@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phishing Simulator - Define Email</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      background-color: #f4f6fb;
+      font-family: 'Inter', sans-serif;
+      color: #222;
+    }
+
+    .header {
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .header h1 {
+      font-weight: 700;
+      font-size: 28px;
+      color: #121826;
+      margin-bottom: 6px;
+    }
+
+    .header p.subtitle {
+      color: #667085;
+      font-size: 16px;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 6px;
+      color: #121826;
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    p.subtitle {
+      color: #667085;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 30px;
+      font-weight: 400;
+      font-size: 16px;
+    }
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+      color: #344054;
+    }
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #101828;
+      resize: vertical;
+      box-sizing: border-box;
+      margin-bottom: 24px;
+      font-family: inherit;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    select {
+      cursor: pointer;
+    }
+    button {
+      width: 100%;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-weight: 600;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #4338ca;
+    }
+    .form-section {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <form action="/step1" method="POST">
+      <div class="header">
+        <h1>Ethical Phishing Simulator</h1>
+        <p class="subtitle"></p>
+      </div>
+
+    <div class="container">
+      <!-- <p class="subtitle">A simple, safe tool to simulate a social engineering attack for educational purposes.</p> -->
+
+
+      <div class="form-section">
+        <h2 font-size: 20px>1. Define the Phishing Email</h2>
+
+        <label for="templateSelect"><strong>Choose an Email Template</strong></label>
+        <select id="templateSelect" name="templateSelect">
+          <option value="account-verification">Account Verification</option>
+          <option value="password-reset">Password Reset</option>
+          <option value="gift-card">Fake Gift Card</option>
+        </select>
+
+        <label for="senderName">Sender Name</label>
+        <input type="text" id="senderName" name="senderName" value="IT Support" />
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" value="Action Required: Security Update" />
+
+        <label for="emailBody">Email Body</label>
+        <textarea id="emailBody" name="emailBody">Dear user,
+
+We've detected unusual activity on your account and have temporarily restricted access as a precautionary measure.
+
+To unlock your account and restore full access, please verify your identity by clicking the link below:
+
+If you do not complete verification within 24 hours, your account may be permanently locked for security reasons.
+
+Thank you,
+IT Support Team</textarea>
+
+        <label for="linkText">Link Text</label>
+        <input type="text" id="linkText" name="linkText" value="Verify My Account" />
+      </div>
+
+      <button type="submit">Next: Landing Page Setup →</button>
+    </div>
+  </form>
+
+  <script>
+    // Example: Update form fields when template changes
+    const templateSelect = document.getElementById('templateSelect');
+    const senderName = document.getElementById('senderName');
+    const subject = document.getElementById('subject');
+    const emailBody = document.getElementById('emailBody');
+    const linkText = document.getElementById('linkText');
+
+    const templates = {
+      "password-reset": {
+        senderName: "IT Support",
+        subject: "Action Required: Password Reset",
+        emailBody: `Dear user,
+
+Your account password has expired due to a recent security policy update. To continue using your account, you are required to reset your password.
+
+Please click the link below to create a new password
+
+This is a mandatory update. If you do not reset your password within 24 hours, your account access will be restricted for your protection.
+
+Thank you for helping us keep your account secure.
+
+Thank you,
+IT Support Team`,
+        linkText: "Reset Password"
+      },
+
+      "account-verification": {
+        senderName: "IT Support",
+        subject: "Action Required: Security Update",
+        emailBody: `Dear user,
+
+We've detected unusual activity on your account and have temporarily restricted access as a precautionary measure.
+
+To unlock your account and restore full access, please verify your identity by clicking the link below:
+
+If you do not complete verification within 24 hours, your account may be permanently locked for security reasons.
+
+Thank you,
+IT Support Team`,
+        linkText: "Verify My Account"
+      },
+
+      "gift-card": {
+        senderName: "Amazon Rewards",
+        subject: "Claim Your $50 Amazon Gift Card Before It Expires",
+        emailBody: `Hello
+
+Congratulations! You’ve been selected to receive a $50 Amazon Gift Card as part of our customer loyalty rewards program.
+
+Your unique gift card code is ready and waiting — but it must be redeemed within 24 hours.
+
+Once redeemed, the amount will be automatically added to your Amazon balance and available for your next purchase.
+
+Gift Card Code: AGC4-7K92-MX8T
+Gift Card Amount: $50.00
+Redemption Deadline: 24 hours from receipt
+Status: Unclaimed
+
+Thank you for being a valued Amazon customer.
+— The Amazon Rewards Team`,
+        linkText: "👉 Redeem Your Gift Card Now"
+      }
+    };
+
+    templateSelect.addEventListener('change', () => {
+      const selected = templateSelect.value;
+      senderName.value = templates[selected].senderName;
+      subject.value = templates[selected].subject;
+      emailBody.value = templates[selected].emailBody;
+      linkText.value = templates[selected].linkText;
+    });
+  </script>
+</body>
+</html>

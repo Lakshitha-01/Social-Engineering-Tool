@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phishing Simulator - Choose Landing Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      background-color: #f4f6fb;
+      font-family: 'Inter', sans-serif;
+      color: #222;
+    }
+
+    .header {
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .header h1 {
+      font-weight: 700;
+      font-size: 28px;
+      color: #121826;
+      margin-bottom: 6px;
+    }
+
+    .header p.subtitle {
+      color: #667085;
+      font-size: 16px;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto 50px;
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      color: #1d2939;
+    }
+
+    .templates {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      border: 2px solid #d0d5dd;
+      border-radius: 12px;
+      padding: 20px;
+      width: 250px;
+      cursor: pointer;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+      user-select: none;
+    }
+
+    .card:hover {
+      border-color: #4f46e5;
+      box-shadow: 0 0 12px #4f46e5aa;
+    }
+
+    .card.selected {
+      border-color: #4f46e5;
+      box-shadow: 0 0 15px #4f46e5cc;
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 18px;
+      color: #1f2937;
+    }
+
+    .logo-wrapper {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .logo-wrapper img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    button {
+      width: 100%;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-weight: 600;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    button.enabled {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    button:hover.enabled {
+      background-color: #4338ca;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header OUTSIDE the box -->
+  <div class="header">
+    <h1>Ethical Phishing Simulator</h1>
+    <p class="subtitle"></p>
+  </div>
+
+  <!-- Main container with template cards -->
+  <div class="container">
+    <h2>2. Choose a Landing Page Template</h2>
+
+    <div class="templates">
+      <div class="card" data-template="amazon">
+        <div class="logo-wrapper">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" />
+        </div>
+        <div class="card-title">Amazon</div>
+      </div>
+      <div class="card" data-template="facebook">
+        <div class="logo-wrapper">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png" alt="Facebook Logo" />
+        </div>
+        <div class="card-title">Facebook</div>
+      </div>
+    </div>
+
+    <!-- Hidden form that will be submitted on click -->
+    <form id="step2Form" action="/handle_selection" method="POST">
+      <!-- Hidden inputs to carry over data from step1 -->
+      <input type="hidden" name="senderName" value="{{ senderName }}">
+      <input type="hidden" name="subject" value="{{ subject }}">
+      <input type="hidden" name="emailBody" value="{{ emailBody }}">
+      <input type="hidden" name="linkText" value="{{ linkText }}">
+      <input type="hidden" name="email_type" value="{{ email_type }}">
+
+      <input type="hidden" name="brand" id="brandSelected" value="">
+      <button type="submit" id="nextBtn">Next: Launch Simulation →</button>
+    </form>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const nextBtn = document.getElementById('nextBtn');
+    const brandInput = document.getElementById('brandSelected');
+
+    // Get email_type from Flask template variable
+    const emailType = "{{ email_type }}";
+
+    // Hide Facebook card if email_type is "gift-card"
+    if (emailType === "gift-card") {
+      cards.forEach(card => {
+        if (card.dataset.template === 'facebook') {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Handle card selection
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        // Ignore click on hidden cards
+        if (card.style.display === 'none') return;
+
+        cards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        brandInput.value = card.dataset.template;
+        nextBtn.classList.add('enabled');
+      });
+    });
+  </script>
+</body>
+</html>
