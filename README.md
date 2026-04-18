@@ -27,8 +27,40 @@ This project is a Flask-based web application designed to simulate a multi-step 
 - **Email Service:** smtplib, email.message
 - **Frontend:** HTML, CSS, JavaScript (Jinja templates)
 - **Tunneling:** Ngrok
+- **Build Tool:** PyInstaller  
 - **Utilities:** threading, subprocess, requests, webbrowser
 
 ---
 
-## Project Structure
+## Setup Instructions
+
+### 1. Clone the repository
+```
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+### 2. Intsall dependencies
+```
+pip install -r requirements.txt
+```
+### 3. Run the application
+```
+python app.py
+```
+
+## Executable Version
+The project includes a packaged executable version:
+```
+dist/app.exe
+```
+This allows running the application without manually starting Python.
+
+---
+
+## How It Works
+
+1. **Step 1:** User selects email template and enters basic content
+2. **Step 2:** User selects target landing page or brand context
+3. **Preview:** System generates final email preview
+4. **Send:** Email is sent using SMTP with dynamically generated content
+5. **Landing Page:** Displays selected HTML page and captures submitted form data
