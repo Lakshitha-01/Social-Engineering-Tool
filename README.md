@@ -1,4 +1,4 @@
-# Social Engineering Simulation Tool (Flask Web App)
+# Social Engineering Simulation Tool
 
 ## Overview
 This project is a Flask-based web application designed to simulate a multi-step email and landing-page workflow. It demonstrates backend development, form handling, dynamic routing, and email automation using Python. The system guides a user through selecting an email template, customizing content, choosing a landing page, and sending an email.
